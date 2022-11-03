@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    {% load static %}
+    
+    <link rel="stylesheet" href="{% static 'layout/style.css' %}"/>
+    {% block stylesheets %}
+    {% endblock %}
+
+    <meta charset="utf-8" />
+    <title>My test page</title>
+
+  </head>
+
+  <body>
+  
+    <div id="container" class="layoutbox">
+      
+      <div id="header" class="layoutbox">
+        
+        <header> 
+        
+          <h3> header </h3>
+        
+        </header>
+
+      </div>
+
+      <div id="nav" class="layoutbox">
+
+        <nav>
+          <div id="nav_container">
+            <div id = "nav_general">
+              <h3 class="nav_general_item"> nav </h3>
+              <p class="nav_general_item"> about us </p>
+              <p class="nav_general_item"> news</p>
+              <p class="nav_general_item"> settings </p>
+            </div>
+
+            <div id ="nav_specific" >
+              {% block nav %}
+              {% endblock %}
+            </div>
+          </div>
+        </nav>
+      
+      </div>
+
+      <div id="section" class="layoutbox">
+        <h3> section </h3>
+        <section>
+
+          {% block content %}
+          {% endblock %}
+
+        </section>
+
+      </div>
+
+
+      <div id="footer" class="layoutbox">
+
+        <footer>
+          
+          <h3> footer </h3>
+        
+        </footer>
+      
+      </div>
+    
+    </div>
+
+  </body>
+
+</html>
