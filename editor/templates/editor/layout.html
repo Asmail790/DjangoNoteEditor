@@ -35,6 +35,13 @@
               <p class="nav_general_item"> about us </p>
               <p class="nav_general_item"> news</p>
               <p class="nav_general_item"> settings </p>
+
+              {% if user.is_authenticated %}
+              <p class="nav_general_item"> username: {{user.username }} </p>
+              <a class="nav_general_item" href= "{% url 'logout' %}">logout</a>
+              {% else %}
+                <a class="nav_general_item" href= "{% url 'login' %}">login</a>
+              {% endif %}
             </div>
 
             <div id ="nav_specific" >
