@@ -5,7 +5,7 @@ from django.shortcuts import render
 
 from .models import Note
 
-from .forms import NoteForm, LoginForm,RegisterForm
+from .forms import NoteForm, LoginForm,RegisterForm, UnRegisterForm
 
 from django.shortcuts import redirect
 
@@ -153,6 +153,7 @@ def register_account(request):
 
     
     registerform = RegisterForm()
+    
     if request.method == "POST":
 
         registerform = RegisterForm(request.POST)
@@ -177,4 +178,40 @@ def register_account(request):
 
     return render(request,'editor/register_account.html',context)
 
-@login_required(login_url='/editor/login/') 
+@login_required(login_url='/editor/login/')
+
+
+
+
+
+def unregister_account(request):
+    
+    unregisterform = UnRegisterForm()
+
+    if request.method == "POST":
+
+        unregisterform = UnRegisterForm(request.POST) 
+
+        if unregisterform.is_valid():
+            print("xxxx")
+            user = get_user(request)
+
+            if user.username == unregisterform.cleaned_data['username']:
+                
+                logout(request)
+
+                user.delete()
+                
+                return redirect('editor')
+
+            else:
+                
+                messages.success(request,"username is incorrect")
+
+                return redirect('unregister_account')
+            
+    context = {"form":unregisterform}
+    return render(request,'editor/unregister_account.html',context)
+
+
+

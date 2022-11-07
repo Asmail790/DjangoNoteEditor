@@ -70,9 +70,14 @@ class RegisterForm(forms.Form):
      
         validate_password(password)
 
-
-
         UnicodeUsernameValidator(username)
 
+
+
+
         
+class UnRegisterForm(forms.Form):
+
+    username = forms.CharField(label="your username")
+
 
