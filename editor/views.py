@@ -1,10 +1,18 @@
-from django.http import HttpResponse
+
+from django.http import HttpResponse,request
+
 from django.shortcuts import render
+
 from .models import Note
-from .forms import NoteForm, LoginForm
+
+from .forms import NoteForm, LoginForm,RegisterForm
+
 from django.shortcuts import redirect
+
 from django.contrib.auth import authenticate, login, logout
+
 from django.contrib.auth.models import User
+
 from django.contrib.auth import get_user
 
 from django.contrib.auth.decorators import login_required
@@ -138,3 +146,35 @@ def logout_view(request):
     logout(request)
     
     return redirect('editor')
+
+
+def register_account(request):
+    
+
+    
+    registerform = RegisterForm()
+    if request.method == "POST":
+
+        registerform = RegisterForm(request.POST)
+
+        if registerform.is_valid():
+           
+            user = User.objects.create_user(
+                username=registerform.cleaned_data['username'],
+                password=registerform.cleaned_data['password'],
+                email=registerform.cleaned_data['email']
+                )
+            
+            login(request,user)
+            
+            return  redirect("editor")
+        
+        else:
+
+            redirect("register_account")
+    
+    context = {"form":registerform}
+
+    return render(request,'editor/register_account.html',context)
+
+@login_required(login_url='/editor/login/') 
