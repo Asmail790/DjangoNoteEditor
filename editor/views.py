@@ -62,7 +62,7 @@ def noteEdit(request, id):
 
 
     context={'form':noteform}
-    return render(request, 'editor/note.html',context)
+    return render(request, 'editor/note/add_or_edit/view.html',context)
 
 @login_required()
 def noteAdd(request):
@@ -87,7 +87,7 @@ def noteAdd(request):
 
 
     context={'form':noteform}
-    return render(request, 'editor/note/add/view.html',context)
+    return render(request, 'editor/note/add_or_edit/view.html',context)
 
 @login_required()
 def noteDelete(request,id):
