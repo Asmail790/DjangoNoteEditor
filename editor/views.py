@@ -23,7 +23,7 @@ from django.core.exceptions import ObjectDoesNotExist
 
 # Create your views here.
 
-@login_required(login_url='/editor/login/')
+@login_required()
 def editor(request):
 
     
@@ -33,10 +33,10 @@ def editor(request):
     
     context = {'notes':notes}
     
-    return render(request, 'editor/editor.html', context)
+    return render(request, 'editor/note/list/view.html', context)
 
 
-@login_required(login_url='/editor/login/')
+@login_required()
 def noteEdit(request, id):
 
     user = get_user(request)
@@ -64,7 +64,7 @@ def noteEdit(request, id):
     context={'form':noteform}
     return render(request, 'editor/note.html',context)
 
-@login_required(login_url='/editor/login/')
+@login_required()
 def noteAdd(request):
     noteform = NoteForm()
 
@@ -87,9 +87,9 @@ def noteAdd(request):
 
 
     context={'form':noteform}
-    return render(request, 'editor/note.html',context)
+    return render(request, 'editor/note/add/view.html',context)
 
-@login_required(login_url='/editor/login/')
+@login_required()
 def noteDelete(request,id):
     
     user = get_user(request)
@@ -108,7 +108,6 @@ def noteDelete(request,id):
 
 
 def login_(request):
-
     if request.user.is_authenticated:
         return redirect("editor")
     
@@ -138,9 +137,9 @@ def login_(request):
     
     context = {'form':loginform}
 
-    return render(request, 'editor/login.html', context)
+    return render(request, 'editor/account/login/view.html', context)
 
-@login_required(login_url='/editor/login/')
+@login_required()
 def logout_view(request):
     
     logout(request)
@@ -176,14 +175,9 @@ def register_account(request):
     
     context = {"form":registerform}
 
-    return render(request,'editor/register_account.html',context)
+    return render(request,'editor/account/register/view.html',context)
 
-@login_required(login_url='/editor/login/')
-
-
-
-
-
+@login_required()
 def unregister_account(request):
     
     unregisterform = UnRegisterForm()
@@ -193,7 +187,6 @@ def unregister_account(request):
         unregisterform = UnRegisterForm(request.POST) 
 
         if unregisterform.is_valid():
-            print("xxxx")
             user = get_user(request)
 
             if user.username == unregisterform.cleaned_data['username']:
@@ -211,7 +204,7 @@ def unregister_account(request):
                 return redirect('unregister_account')
             
     context = {"form":unregisterform}
-    return render(request,'editor/unregister_account.html',context)
+    return render(request,'editor/account/unregister/view.html',context)
 
 
 
