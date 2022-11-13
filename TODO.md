@@ -14,6 +14,9 @@
 - configure Docker
 
 - Remove CSS, use bootstrap (Done)
+- use bootstrap on form
+
+- seperate test into multiple files (Done)
 
 - seperate business logic from view
 - rename urls to more fitting names
