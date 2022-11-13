@@ -24,7 +24,7 @@ from django.core.exceptions import ObjectDoesNotExist
 # Create your views here.
 
 @login_required()
-def editor(request):
+def noteList(request):
 
     
     user = User.objects.get(id=request.user.id)
