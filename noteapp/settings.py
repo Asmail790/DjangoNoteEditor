@@ -124,5 +124,4 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
-# TODO find by reverse. less dependet on hardcoded url
-LOGIN_URL = reverse_lazy("login") # "/editor/accounts/login/" # reverse_lazy
+LOGIN_URL = reverse_lazy("login")
