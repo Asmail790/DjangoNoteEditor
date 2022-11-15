@@ -74,7 +74,6 @@ class RegisterForm(forms.Form):
 
 
 
-
         
 class UnRegisterForm(forms.Form):
 
