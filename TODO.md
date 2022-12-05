@@ -11,9 +11,10 @@
 
 - configure pep8
 
-- configure Docker
+- configure Docker (Done)
+- check dev container 
 
-- Remove CSS, use bootstrap (Done)
+
 - use bootstrap on form
 
 - seperate test into multiple files (Done)
