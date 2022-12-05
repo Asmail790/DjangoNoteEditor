@@ -1,0 +1,9 @@
+{
+    "pylint.importStrategy": "fromEnvironment",
+    "editor.fontSize": 14,
+    "pylint.args": [
+        "--rcfile=.pylintrc"
+    ],
+    "autopep8.importStrategy": "fromEnvironment",
+    "editor.formatOnSave": true,
+}
