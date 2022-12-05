@@ -9,10 +9,12 @@
 # Rest
 - add tests
 
-- configure pep8
+- configure autopep8 (done)
+
 
 - configure Docker (Done)
 - check dev container 
+- fix pylinter autopep8 in visual studio code to work inside docker
 
 
 - use bootstrap on form
@@ -23,5 +25,4 @@
 - rename urls to more fitting names
 - seperte registertion/unregistion in seperate app ? 
 - start documenting all functions
-
 
