@@ -1,0 +1,22 @@
+{% extends "editor/base/base.html" %}
+
+{% load static %}
+
+
+{% block title %} unregister {% endblock %}
+
+
+{% block page_specific_navbar %}
+    
+{% endblock %}
+
+
+{% block page_specific_content %}
+    <!-- simplify html if possible -->
+    <div class="flex-fill d-flex flex-row justify-content-center">
+        <div class="d-flex flex-column  justify-content-center">
+            {%  include  "editor/account/unregister/unregister_form.html"  %}
+        </div>
+    </div>  
+
+{% endblock %}

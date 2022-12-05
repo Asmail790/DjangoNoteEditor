@@ -1,0 +1,66 @@
+
+html,body {
+	height: 100%;
+    background-color: chartreuse;
+    margin: 0px;
+}
+
+.layoutbox {
+    padding: 10px;
+}
+
+#container {
+    display: flex;
+    
+    flex-wrap: nowrap;
+    
+    flex-flow: column;
+    
+    justify-content: space-between;
+    
+    margin: 0px;
+    padding: 0px;
+    background-color: cornflowerblue;
+    height: 100%;
+    width: 100%;
+}
+
+#header {
+    background-color: bisque;
+}
+
+#nav {
+    background-color: blueviolet;
+}
+
+#nav_container {
+    display: flex;
+    flex-wrap:wrap;
+    gap:30px;
+    flex-flow: row;
+    justify-content: flex-start;
+}
+
+#nav_general {
+    display: flex;
+    flex-wrap:wrap ;
+    flex-flow: row;
+    gap:10px;
+    background-color: chocolate;
+}
+
+.nav_general_item {
+    align-self: flex-start;
+}
+
+#nav_specific {
+    background-color: azure;
+}
+#section {
+    background-color: chocolate;
+    flex-grow: 3;
+}
+
+#footer {
+    background-color: cadetblue;
+}
