@@ -10,10 +10,6 @@ RUN python manage.py test
 
 
 FROM python:3.10-alpine as production
-
-
-
-#ENV PYTHONPATH="${PYTHONPATH}:/home/App"
 RUN apk update
 RUN apk add bash
 
