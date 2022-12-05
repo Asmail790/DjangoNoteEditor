@@ -1,0 +1,5 @@
+[MAIN]
+load-plugins=pylint_django
+
+[MESSAGES CONTROL]
+disable=E5142
