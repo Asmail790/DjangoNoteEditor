@@ -1,6 +1,8 @@
 services:
   python:
-    build: .
+    build:
+      context: .
+      target: production
     volumes:
       - type: bind
         source: ./App
