@@ -8,6 +8,8 @@
 
 # Rest
 - add tests
+- fix so that all notes are algined correct check image
+- fix to use thumb nail instead of images
 
 - configure autopep8 (done)
 
