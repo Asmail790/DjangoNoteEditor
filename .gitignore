@@ -132,3 +132,6 @@ dmypy.json
 # dependencies 
 /dependencies
 /testarea
+
+# images
+App/media/note_images/
