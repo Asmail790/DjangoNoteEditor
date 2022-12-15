@@ -18,9 +18,9 @@ from django.contrib import messages
 
 from django.core.exceptions import ObjectDoesNotExist
 
-from .models import Note
+from .models import Note, NoteImage
 
-from .forms import NoteForm, LoginForm, RegisterForm, UnRegisterForm
+from .forms import NoteForm, LoginForm, ImageForm, RegisterForm, UnRegisterForm
 
 
 @login_required()
@@ -32,7 +32,12 @@ def note_list(request):
     user = User.objects.get(id=request.user.id)
 
     notes = Note.objects.all().filter(user=user)
+    for note in notes:
 
+        print(note.noteimage_set.exists())
+
+        if note.noteimage_set.exists():
+            print(note.noteimage_set.first().image.url)
     context = {'notes': notes}
 
     return render(request, 'editor/note/list/view.html', context)
@@ -94,6 +99,30 @@ def note_add(request):
 
     context = {'form': noteform}
     return render(request, 'editor/note/add_or_edit/view.html', context)
+
+
+@login_required()
+def add_image(request, id_):
+    """
+    A view where a new note is added to curent logged in user.
+    """
+    noteimage = ImageForm()
+
+    if request.method == "POST":
+
+        noteimage = ImageForm(request.POST, request.FILES)
+
+        if noteimage.is_valid():
+
+            model_instance = noteimage.save(commit=False)
+            model_instance.note = Note.objects.get(id=id_)
+
+            model_instance.save()
+
+        return redirect('editor')
+
+    context = {'noteimages': noteimage}
+    return render(request, 'editor/note/multi_edit/view.html', context)
 
 
 @login_required()

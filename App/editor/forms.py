@@ -1,9 +1,11 @@
+from django.forms import inlineformset_factory
+from django.forms import formset_factory, modelformset_factory
 from django.contrib.auth.validators import UnicodeUsernameValidator
 from django.contrib.auth.password_validation import validate_password
 from django.forms import ModelForm, ValidationError
 from django import forms
 from django.forms import Form
-from .models import Note
+from .models import Note, NoteImage
 
 from django.contrib.auth.models import User
 from . utilities import get_field
@@ -77,3 +79,18 @@ class RegisterForm(forms.Form):
 class UnRegisterForm(forms.Form):
 
     username = forms.CharField(label="your username")
+
+
+class ImageForm(ModelForm):
+    class Meta:
+
+        model = NoteImage
+
+        fields = ['image']
+
+
+# NoteFormSet = modelformset_factory(Note, fields=(
+#    'text', 'title'), extra=1)
+
+NoteImageFormSet = inlineformset_factory(
+    Note, NoteImage, fields=('image',), extra=1)
