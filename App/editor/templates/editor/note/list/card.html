@@ -1,14 +1,17 @@
 <article class="card">
-
-    {%if note.noteimage_set.exists %}
-    <img class="card-img-top" src="{{note.noteimage_set.first.image.url}}" alt="Card image cap">
-    {% endif %}
-    <div class="card-body">
-      <h5 class="card-title">{{note.title}}</h5>
-      <!--<h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>-->
-      <p class="card-text">{{note.text}}</p>
-      <a  href=" {% url 'note_edit' note.id %}" class="card-link">Edit</a>
-      <a  href=" {% url 'note_delete' note.id %}" class="card-link">Delete</a>
-      <a  href=" {% url 'add_image' note.id %}" class="card-link">Add Images</a>
-    </div>
+  {% if note.noteimage_set.exists %}
+  <img 
+    style="height: 256px;aspect-ratio: 4/3;object-fit: cover;"
+    class="card-img-top"
+    src="{{note.noteimage_set.first.image.url}}"
+    alt="Card image cap"
+  />
+  {% endif %}
+  <div class="card-body">
+    <h5 class="card-title">{{note.title}}</h5>
+    <!--<h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>-->
+    <p class="card-text">{{note.text}}</p>
+    <a href="{% url 'note_view' note.id %}" class="card-link">View</a>
+    <a href=" {% url 'note_delete' note.id %}" class="card-link">Delete</a>
+  </div>
 </article>

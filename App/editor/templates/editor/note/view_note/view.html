@@ -1,0 +1,25 @@
+{% extends "editor/base/base.html" %}
+
+
+{% block page_title %}
+Add
+{% endblock %}
+
+
+{% block  page_specific_navbar %}
+    {% include  "editor/note/view_note/navbar.html" %}
+{% endblock %}         
+    
+
+{% block page_specific_content %}
+    <!-- simplify html if possible -->
+    <div class="flex-fill   d-flex flex-row justify-content-center">
+        <div class="flex-fill d-flex  flex-column  justify-content-center">
+            {% include "editor/note/view_note/carousel.html" %}
+            {% include "editor/note/view_note/note_view.html" %}
+        </div>
+    </div>    
+
+{% endblock %}    
+
+

@@ -1,0 +1,51 @@
+<div class="container">
+<div
+id="carouselExampleInterval"
+    class="carousel slide"
+    style="background-color: black"
+   
+  >
+
+  <div class="carousel-inner">
+    
+    {% for image in images %} 
+
+    {% if forloop.counter0 == 0 %} 
+      <div class="carousel-item active">
+    {% else %}
+      <div class="carousel-item">
+    {% endif %}
+      <img
+        src="{{image.image.url}}"
+        class="d-block mx-auto"
+        alt="..."
+      />
+      <div class="carousel-caption d-block mx-auto">
+        <a class="btn btn-primary" role="button"> 
+          delete
+        </a>
+      </div>
+    </div>
+  {% endfor %}
+    </div>
+    <button
+      class="carousel-control-prev"
+      type="button"
+      data-bs-target="#carouselExampleInterval"
+      data-bs-slide="prev"
+    >
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button
+      class="carousel-control-next"
+      type="button"
+      data-bs-target="#carouselExampleInterval"
+      data-bs-slide="next"
+    >
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+  <a class="btn btn-primary d-inline" role="button">Add image</a>
+<div>

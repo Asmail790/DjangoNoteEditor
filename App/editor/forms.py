@@ -89,8 +89,8 @@ class ImageForm(ModelForm):
         fields = ['image']
 
 
-# NoteFormSet = modelformset_factory(Note, fields=(
-#    'text', 'title'), extra=1)
+class AddImage(forms.ModelForm):
 
-NoteImageFormSet = inlineformset_factory(
-    Note, NoteImage, fields=('image',), extra=1)
+    class Meta:
+        model = NoteImage
+        fields = ('image',)

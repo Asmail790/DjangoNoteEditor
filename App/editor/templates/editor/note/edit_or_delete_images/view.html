@@ -1,0 +1,11 @@
+{% extends "editor/base/base.html" %} {% block page_title %} Add {% endblock %}
+{% block page_specific_navbar %} {% endblock %} 
+
+{% block page_specific_content %}
+<!-- simplify html if possible -->
+<div class="flex-fill w-100 d-flex flex-row justify-content-center">
+  <div class="d-flex w-100 flex-column justify-content-center">
+    {% include "editor/note/edit_or_delete_images/note_form.html" %}
+  </div>
+</div>
+{% endblock %}

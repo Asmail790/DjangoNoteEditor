@@ -1,5 +1,11 @@
 """Contain django view for the app."""
 
+from django import forms
+from django.forms import inlineformset_factory
+from django.urls import reverse
+from django.urls.resolvers import URLResolver
+from django.http import HttpResponseRedirect
+from django.http import HttpRequest
 from django.http import HttpResponse
 
 from django.shortcuts import render
@@ -20,7 +26,7 @@ from django.core.exceptions import ObjectDoesNotExist
 
 from .models import Note, NoteImage
 
-from .forms import NoteForm, LoginForm, ImageForm, RegisterForm, UnRegisterForm
+from .forms import AddImage, NoteForm, LoginForm, RegisterForm, UnRegisterForm
 
 
 @login_required()
@@ -32,12 +38,6 @@ def note_list(request):
     user = User.objects.get(id=request.user.id)
 
     notes = Note.objects.all().filter(user=user)
-    for note in notes:
-
-        print(note.noteimage_set.exists())
-
-        if note.noteimage_set.exists():
-            print(note.noteimage_set.first().image.url)
     context = {'notes': notes}
 
     return render(request, 'editor/note/list/view.html', context)
@@ -50,7 +50,6 @@ def note_edit(request, id_: int):
 
     parameters:
     id: the id of the note which will be edited.
-
     """
 
     user = get_user(request)
@@ -70,7 +69,9 @@ def note_edit(request, id_: int):
 
         return redirect('editor')
 
-    context = {'form': noteform}
+    images = Note.objects.get(id=id_).noteimage_set.all()
+
+    context = {'form': noteform, 'images': images}
     return render(request, 'editor/note/add_or_edit/view.html', context)
 
 
@@ -102,27 +103,51 @@ def note_add(request):
 
 
 @login_required()
-def add_image(request, id_):
-    """
-    A view where a new note is added to curent logged in user.
-    """
-    noteimage = ImageForm()
+def note_view(request: HttpRequest, id_):
+
+    note = Note.objects.get(id=id_)
+    images = note.noteimage_set.all()
+
+    context = {'note': note, 'images': images}
+
+    return render(request, 'editor/note/view_note/view.html', context)
+
+
+@login_required()
+def noteImage_remove_or_edit(request: HttpRequest, id_):
+    note = Note.objects.get(id=id_)
+    EditImageSet = inlineformset_factory(
+        Note, NoteImage, fields=('image',), extra=0)
+
+    EditImageForm = EditImageSet(instance=note)
 
     if request.method == "POST":
+        EditImageForm = EditImageSet(
+            data=request.POST, files=request.FILES, instance=note)
+        if EditImageForm.is_valid():
 
-        noteimage = ImageForm(request.POST, request.FILES)
+            EditImageForm.save()
 
-        if noteimage.is_valid():
+        return redirect('note_view', id_=note.pk)
 
-            model_instance = noteimage.save(commit=False)
-            model_instance.note = Note.objects.get(id=id_)
+    context = {'form': EditImageForm}
+    return render(request, 'editor/note/edit_or_delete_images/view.html', context)
 
-            model_instance.save()
 
-        return redirect('editor')
+def note_add_image(request: HttpRequest, id_):
+    note = Note.objects.get(id=id_)
+    noteImage = NoteImage(note=note)
+    form = AddImage()
 
-    context = {'noteimages': noteimage}
-    return render(request, 'editor/note/multi_edit/view.html', context)
+    if request.method == "POST":
+        form = AddImage(
+            data=request.POST, files=request.FILES, instance=noteImage)
+        if form.is_valid():
+            form.save()
+        return redirect('note_view', id_=id_)
+
+    context = {'form': form}
+    return render(request, 'editor/note/add_image/view.html', context)
 
 
 @login_required()
