@@ -77,15 +77,13 @@ class RegisterForm(forms.Form):
 
 
 class UnRegisterForm(forms.Form):
-
     username = forms.CharField(label="your username")
 
 
 class ImageForm(ModelForm):
+
     class Meta:
-
         model = NoteImage
-
         fields = ['image']
 
 
