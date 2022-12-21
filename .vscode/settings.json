@@ -1,9 +1,18 @@
 {
-    "pylint.importStrategy": "fromEnvironment",
-    "editor.fontSize": 14,
-    "pylint.args": [
-        "--rcfile=.pylintrc"
-    ],
-    "autopep8.importStrategy": "fromEnvironment",
-    "editor.formatOnSave": true,
+  "pylint.importStrategy": "fromEnvironment",
+  "editor.fontSize": 14,
+  "pylint.args": [
+    "--rcfile=.pylintrc"
+  ],
+  "autopep8.importStrategy": "fromEnvironment",
+  "editor.formatOnSave": true,
+  "html.format.enable": false,
+  "prettier.singleAttributePerLine": true,
+  "html.autoClosingTags": true,
+  "html.format.preserveNewLines": true,
+  "html.format.templating": true,
+  "workbench.preferredDarkColorTheme": "Default Dark+",
+  "workbench.colorTheme": "Default Dark+",
+  "workbench.preferredHighContrastColorTheme": "Default Dark+",
+  "workbench.preferredLightColorTheme": "Default Dark+"
 }
