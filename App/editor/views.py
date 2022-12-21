@@ -110,7 +110,9 @@ def note_view(request: HttpRequest, id_: int):
 
 @login_required()
 def noteImage_remove_or_edit(request: HttpRequest, id_: int):
+
     note = Note.objects.get(id=id_)
+
     EditImageSet = inlineformset_factory(
         Note, NoteImage, fields=('image',), extra=0)
 
@@ -118,27 +120,39 @@ def noteImage_remove_or_edit(request: HttpRequest, id_: int):
 
     if request.method == "POST":
         EditImageForm = EditImageSet(
-            data=request.POST, files=request.FILES, instance=note)
-        if EditImageForm.is_valid():
+            data=request.POST,
+            files=request.FILES,
+            instance=note
+        )
 
+        if EditImageForm.is_valid():
             EditImageForm.save()
 
         return redirect('note_view', id_=note.pk)
 
     context = {'form': EditImageForm}
+
     return render(request, 'editor/note/edit_or_delete_images/view.html', context)
 
 
+@login_required()
 def note_add_image(request: HttpRequest, id_: int):
     note = Note.objects.get(id=id_)
+
     noteImage = NoteImage(note=note)
+
     form = AddImage()
 
     if request.method == "POST":
         form = AddImage(
-            data=request.POST, files=request.FILES, instance=noteImage)
+            data=request.POST,
+            files=request.FILES,
+            instance=noteImage
+        )
+
         if form.is_valid():
             form.save()
+
         return redirect('note_view', id_=id_)
 
     context = {'form': form}
