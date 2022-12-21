@@ -1,4 +1,5 @@
 """Contain django view for the app."""
+from django.db.models import Q
 from django.forms import inlineformset_factory
 from django.http import HttpRequest
 from django.http import HttpResponse
@@ -106,6 +107,18 @@ def note_view(request: HttpRequest, id_: int):
     context = {'note': note, 'images': images}
 
     return render(request, 'editor/note/view_note/view.html', context)
+
+
+@login_required()
+def note_search(request: HttpRequest):
+    search = request.GET.get("search")
+    user = get_user(request)
+
+    match = Note.objects.filter(Q(pk=user.pk) ^ Q(title__icontains=search))
+
+    context = {'notes': match, "search": search}
+
+    return render(request, 'editor/note/list/view.html', context)
 
 
 @login_required()
