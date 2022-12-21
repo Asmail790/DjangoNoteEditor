@@ -1,10 +1,5 @@
 """Contain django view for the app."""
-
-from django import forms
 from django.forms import inlineformset_factory
-from django.urls import reverse
-from django.urls.resolvers import URLResolver
-from django.http import HttpResponseRedirect
 from django.http import HttpRequest
 from django.http import HttpResponse
 
@@ -30,7 +25,7 @@ from .forms import AddImage, NoteForm, LoginForm, RegisterForm, UnRegisterForm
 
 
 @login_required()
-def note_list(request):
+def note_list(request: HttpRequest):
     """
     A view where all notes owned by curent logged in user are listed.
     """
@@ -44,7 +39,7 @@ def note_list(request):
 
 
 @login_required()
-def note_edit(request, id_: int):
+def note_edit(request: HttpRequest, id_: int):
     """
     A view where a note can be edited.
 
@@ -76,7 +71,7 @@ def note_edit(request, id_: int):
 
 
 @login_required()
-def note_add(request):
+def note_add(request: HttpRequest):
     """
     A view where a new note is added to curent logged in user.
     """
@@ -103,7 +98,7 @@ def note_add(request):
 
 
 @login_required()
-def note_view(request: HttpRequest, id_):
+def note_view(request: HttpRequest, id_: int):
 
     note = Note.objects.get(id=id_)
     images = note.noteimage_set.all()
@@ -114,7 +109,7 @@ def note_view(request: HttpRequest, id_):
 
 
 @login_required()
-def noteImage_remove_or_edit(request: HttpRequest, id_):
+def noteImage_remove_or_edit(request: HttpRequest, id_: int):
     note = Note.objects.get(id=id_)
     EditImageSet = inlineformset_factory(
         Note, NoteImage, fields=('image',), extra=0)
@@ -134,7 +129,7 @@ def noteImage_remove_or_edit(request: HttpRequest, id_):
     return render(request, 'editor/note/edit_or_delete_images/view.html', context)
 
 
-def note_add_image(request: HttpRequest, id_):
+def note_add_image(request: HttpRequest, id_: int):
     note = Note.objects.get(id=id_)
     noteImage = NoteImage(note=note)
     form = AddImage()
@@ -151,7 +146,7 @@ def note_add_image(request: HttpRequest, id_):
 
 
 @login_required()
-def note_delete(request, id_: int):
+def note_delete(request: HttpRequest, id_: int):
     """
     A view where a note is deleted.
 
@@ -174,7 +169,7 @@ def note_delete(request, id_: int):
     return redirect('editor')
 
 
-def login_(request):
+def login_(request: HttpRequest):
     """
     A view where user log in.
     """
@@ -213,7 +208,7 @@ def login_(request):
 
 
 @login_required()
-def logout_view(request):
+def logout_view(request: HttpRequest):
     """
     A view where user  logout.
     """
@@ -223,7 +218,7 @@ def logout_view(request):
     return redirect('editor')
 
 
-def register_account(request):
+def register_account(request: HttpRequest):
     """
     A view where a new account is created.
     """
@@ -256,7 +251,7 @@ def register_account(request):
 
 
 @login_required()
-def unregister_account(request):
+def unregister_account(request: HttpRequest):
     """
     A view where a account is deleted.
     """
