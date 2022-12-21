@@ -1,7 +1,7 @@
 
 ### features
 
-- search bar
+- search bar (Done)
 - note with images (Done)
 - pagination
 - ablility to download notes
