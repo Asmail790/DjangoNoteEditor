@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'editor.apps.EditorConfig',
     'django_cleanup.apps.CleanupConfig',
+    'query_parameters'
 ]
 
 MIDDLEWARE = [
