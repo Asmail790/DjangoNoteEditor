@@ -1,0 +1,34 @@
+{% load query_parameters %}
+<div class="container-fluid flex-fill h-100">
+        <div class="d-flex flex-row my-0 py-5 gap-2 justify-content-center h-100"> 
+            <div class="d-flex  flex-column  justify-content-end h-100"> 
+            <nav aria-label="Page navigation example">
+                <ul class="pagination">
+                
+                {% if notes.has_previous %}
+                <li class="page-item"><a class="page-link" href="?{% set_query_parameters page=notes.previous_page_number search=search %}">previous</a></li>
+                {% endif %}
+
+                {% for page in page_range %}
+                    
+                    {% if page == notes.paginator.ELLIPSIS %}
+                        <li class="page-item"><a class="page-link" href="#">{{notes.paginator.ELLIPSIS}}</a></li>
+                    
+                    {% elif page == notes.number%}
+                        <li class="page-item"><a class="page-link active" href="?{% set_query_parameters page=page search=search %}">{{page}}</a></li>
+
+                    {% else %}
+                        <li class="page-item"><a class="page-link" href="?{% set_query_parameters page=page search=search %}">{{page}}</a></li>
+                    {% endif %}
+               
+                {% endfor %}
+
+                {% if notes.has_next %} 
+                <li class="page-item"><a class="page-link" href="?{% set_query_parameters page=notes.next_page_number search=search %}">next</a></li>
+                {% endif %}
+
+                </ul>
+            </nav>           
+        </div> 
+    </div>
+</div>
