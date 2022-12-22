@@ -1,4 +1,5 @@
 """Contain django view for the app."""
+from django.core.paginator import Paginator
 from django.db.models import Q
 from django.forms import inlineformset_factory
 from django.http import HttpRequest
@@ -31,10 +32,31 @@ def note_list(request: HttpRequest):
     A view where all notes owned by curent logged in user are listed.
     """
 
-    user = User.objects.get(id=request.user.id)
+    search: str = request.GET.get("search", "")
+    print(search)
+    page_number: int | None = request.GET.get('page')
 
-    notes = Note.objects.all().filter(user=user)
-    context = {'notes': notes}
+    user = get_user(request)
+
+    if bool(search) is False:
+        match = Note.objects.all().filter(user=user)
+    else:
+        match = Note.objects.all().filter(
+            Q(user=user) & Q(title__icontains=search)
+        )
+
+    paginator = Paginator(
+        object_list=match.order_by("title"),
+        per_page=4,
+        allow_empty_first_page=True
+    )
+
+    page = paginator.get_page(page_number)
+
+    page_range = paginator.get_elided_page_range(
+        number=page.number, on_each_side=2, on_ends=1)
+
+    context = {'notes': page, 'page_range': page_range, 'search': search}
 
     return render(request, 'editor/note/list/view.html', context)
 
@@ -107,18 +129,6 @@ def note_view(request: HttpRequest, id_: int):
     context = {'note': note, 'images': images}
 
     return render(request, 'editor/note/view_note/view.html', context)
-
-
-@login_required()
-def note_search(request: HttpRequest):
-    search = request.GET.get("search")
-    user = get_user(request)
-
-    match = Note.objects.filter(Q(pk=user.pk) ^ Q(title__icontains=search))
-
-    context = {'notes': match, "search": search}
-
-    return render(request, 'editor/note/list/view.html', context)
 
 
 @login_required()
