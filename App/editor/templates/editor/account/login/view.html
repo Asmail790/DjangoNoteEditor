@@ -15,7 +15,7 @@ Login
     <div class="flex-fill d-flex flex-row justify-content-center">
         <div class="d-flex flex-column  justify-content-center">
             {% include "editor/account/login/login_form.html" %}
-            <a href = {% url 'register_account' %} class="m-5 fs-6 fw-semibold text-center">Register today</a>
+            <a data-testid="register_account" href = {% url 'register_account' %} class="m-5 fs-6 fw-semibold text-center">Register today</a>
         </div>
         
     </div>    
