@@ -14,6 +14,8 @@
 - make possible to add text image simultaneously.
 - make inidication that a note have multiple images.
 
+- Test with firefox, chromium, webkit
+
 - possible to add multiple images and show them directly.
 
 - configure autopep8 (done)
