@@ -17,5 +17,5 @@ class Note(models.Model):
 
 
 class NoteImage(models.Model):
-    image = models.ImageField(upload_to="note_images")
+    image = CloudinaryField("image")
     note = models.ForeignKey(Note, on_delete=models.CASCADE)
