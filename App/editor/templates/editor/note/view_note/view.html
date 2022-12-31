@@ -6,10 +6,7 @@ Add
 {% endblock %}
 
 
-{% block  page_specific_navbar %}
-    {% include  "editor/note/view_note/navbar.html" %}
-{% endblock %}         
-    
+
 
 {% block page_specific_content %}
     <!-- simplify html if possible -->
@@ -22,4 +19,10 @@ Add
 
 {% endblock %}    
 
+{% block phone_buttons %}
+  {%  include  "editor/note/view_note/buttons.html" %}
+{% endblock %}
+{% block page_full_desktop_button %} 
+  {%  include  "editor/note/view_note/buttons.html" %}
+{% endblock %}
 

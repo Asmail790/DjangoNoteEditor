@@ -24,17 +24,16 @@ class NoteForm(ModelForm):
 
 
 class LoginForm(forms.Form):
-
+    # TODO  implement  Widget.render() or  template_render to work with bootstrap 
     username = forms.CharField(label='username', max_length=100)
+
 
     password = forms.CharField(widget=forms.PasswordInput, max_length=100)
 
+    username.widget.attrs.update({'class': 'form-control input-group mb-2'})
+    password.widget.attrs.update({'class': 'form-control input-group mb-2'})
 
 class RegisterForm(forms.Form):
-
-    # TODO add validiation
-    # - password resaniable
-    # - password == retyped_password samme
 
     username = forms.CharField(label='username', max_length=100)
 
@@ -45,6 +44,11 @@ class RegisterForm(forms.Form):
         label="retype password", widget=forms.PasswordInput, max_length=100)
 
     email = forms.EmailField()
+
+    username.widget.attrs.update({'class': 'form-control input-group mb-2'})
+    password.widget.attrs.update({'class': 'form-control input-group mb-2'})
+    retyped_password.widget.attrs.update({'class': 'form-control input-group mb-2'})
+    email.widget.attrs.update({'class': 'form-control input-group mb-2'})
 
     def clean(self):
 
@@ -78,7 +82,9 @@ class RegisterForm(forms.Form):
 
 class UnRegisterForm(forms.Form):
     username = forms.CharField(label="your username")
-
+    
+    username.widget.attrs.update({'class': 'form-control input-group mb-2'})
+    
 
 class ImageForm(ModelForm):
 
@@ -88,7 +94,7 @@ class ImageForm(ModelForm):
 
 
 class AddImage(forms.ModelForm):
-
+    
     class Meta:
         model = NoteImage
         fields = ('image',)

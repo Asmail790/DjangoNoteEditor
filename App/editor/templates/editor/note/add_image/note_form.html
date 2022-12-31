@@ -1,5 +1,7 @@
-<form method="post" action =" " enctype="multipart/form-data">
+<form class="container" method="post" action =" " enctype="multipart/form-data">
   {% csrf_token %}
   {{ form.as_p }}
-  <input type="submit" value="apply"/>
+  
+  <input class="btn btn-primary" type="submit" value="uppload"/> 
+ 
 </form>

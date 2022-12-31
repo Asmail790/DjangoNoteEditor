@@ -1,21 +1,22 @@
-  <div class="container-fluid flex-fill">
-    <div class="row my-0 py-5 gap-2"> 
-      
-      {% if notes|length == 0 and search != ""  %}
-        <p class="text-center fw-lighter fs-4"> No match found for <em class="fst-italic">"{{search}}"</em>.</p>
-      
-      {% elif search != ""  %}
-        <p class="text-center fw-lighter fs-4"> Search result for <em class="fst-italic">"{{search}}"</em>.</p>
+<div class="container-fluid flex-fill">
+  <div class="row my-0 py-5 gap-2 justify-content-lg-center"> 
+    
+    
+    {% if notes|length == 0 and search != ""  %}
+      <p class="text-center fw-lighter fs-4"> No match found for <em class="fst-italic">"{{search}}"</em>.</p>
+    
+    {% elif search != ""  %}
+      <p class="text-center fw-lighter fs-4"> Search result for <em class="fst-italic">"{{search}}"</em>.</p>
 
-      {% endif %}
+    {% endif %}
 
- 
-      {% for note in notes %}
-        <div class="col-lg-4 col-md-12"> 
-            {% include "editor/note/list/card.html" %}
-        </div>
-      {% endfor %}
-    </div>
+
+    {% for note in notes %}
+      <div class="col-lg-4 col-md-12"> 
+          {% include "editor/note/list/card.html" %}
+      </div>
+    {% endfor %}
+  </div>
 </div>
 
 

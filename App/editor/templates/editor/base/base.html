@@ -8,8 +8,7 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
-    
+    <link href="{% static 'editor/css/bootstrap.min.css' %}" rel="stylesheet"  integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" />
     <title>{% block page_title %} {% endblock %}</title>
   
   </head>
@@ -35,13 +34,21 @@
 
     <div class="d-flex flex-column justify-content-between h-100">  
         {% include 'editor/base/navbar.html'  %}
-        
-        {% block  page_specific_navbar %}{% endblock %}         
+      
+        <div class=" mb-5 container-fluid p-2  border-1 border-top border-success  d-lg-block d-none  bg-dark">
+          <div class="container  d-flex flex-row">
+          {% block  page_full_desktop_button %} {% endblock %}
+          </div>
+        </div>       
     
         {% block page_specific_content %}{% endblock %}
 
         {% include 'editor/base/footer.html'  %}
     </div>
-  </body>
+    
+    <div class="d-lg-none d-flex flex-row justify-content-center w-100 position-fixed" style="position:fixe;top:80%;">   
+        {% block phone_buttons %} {% endblock %}
+    </div>
 
+  </body>
 </html>
