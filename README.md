@@ -33,5 +33,7 @@ python manage.py runserver
 ## home page for smartphone
 
 <p align="center">
-  <img src="./preview_images/img2.png" alt="Sublime's custom image"/>
+  <img src="./preview_images/img2.png"/>
+  <br>
+<a href ="https://www.moviezine.se/nyheter/batman-the-animated-series-fyller-25-ar"> batman img source </a>
 </p>
