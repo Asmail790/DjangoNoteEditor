@@ -6,14 +6,13 @@ A Simple note editor in Django.
 
 pip install -r requirements.txt
 
-
 Create .env file in same folder as settings.py and add CLOUDINARY_URL into it.
 Alternativly change NoteImage to use django.db.models.imagefield instead of cloudinary.models.CloudinaryField. 
 
-CLOUDINARY is a service which enables to upload download images.
+CLOUDINARY is a service which enables to upload and download images.
 CLOUDINARY django sample project: https://github.com/cloudinary/cloudinary-django-sample. 
 
-### test online
+### Test online
 You can test the app online via this [link](http://asmail.eu.pythonanywhere.com/editor) until Thursday 30 March 2023. Create a account or log in with
 "RandomPerson" as username and "simple-Password1" as password.
 
