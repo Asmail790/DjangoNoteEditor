@@ -41,11 +41,12 @@
         {% endif %}
       </ul>
 
-
+      {% if user.is_authenticated %}
       <form class="d-flex" role="search" action="{% url 'editor' %}" method="get">
         <input class="form-control me-2" name="search" type="search" placeholder="Search"  value="{{search}}" aria-label="Search">
         <button class="btn   btn-light" type="submit">Search</button>
       </form>
+      {% endif %}
     </div>
 
 
