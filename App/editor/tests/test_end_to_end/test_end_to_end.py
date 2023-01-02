@@ -14,7 +14,7 @@ class MyViewTests(StaticLiveServerTestCase):
         cls.playwright = sync_playwright().start()
 
         # TODO test all webbrowsers.
-        cls.browser = cls.playwright.chromium.launch(headless=False)
+        cls.browser = cls.playwright.chromium.launch()
 
         cls.account_data = {
             "password":"Exterimnate-All-Human-123",
