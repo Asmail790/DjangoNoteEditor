@@ -6,13 +6,15 @@ A Simple note editor in Django.
 
 pip install -r requirements.txt
 
-Create .env file in same folder as settings.py with following content 
+Create .env file in same folder as settings.py with following content\
+"""\
+cloud_name='cloud_name'\
+api_key='api_key'\
+api_secret='api_secret'\
+api_proxy=http://proxy.server:3128 # only need if deployed at PythonAnywhere\
 """
-cloud_name='cloud_name'
-api_key='api_key'
-api_secret='api_secret'
-api_proxy=http://proxy.server:3128
-"""
+
+###
 api_proxy is only need if deployed at PythonAnywhere where communication to outside severs need to be done via their proxyserver. PythonAnywhere's proxyservers whitelist can viewed [here](https://www.pythonanywhere.com/whitelist/).
 
 Alternativly change NoteImage to use django.db.models.imagefield instead of cloudinary.models.CloudinaryField. 
