@@ -13,9 +13,23 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 import os
 from pathlib import Path
 from django.urls import reverse_lazy
-from dotenv import load_dotenv
+from dotenv import dotenv_values
+import cloudinary
 
-load_dotenv()
+
+os.environ['DJANGO_SETTINGS_MODULE'] = 'noteapp.settings'
+
+CLOUDINARY_CONFIG = dotenv_values()
+
+Deployed_AT_PYTHONANYWHERE = False 
+
+if not Deployed_AT_PYTHONANYWHERE:
+    del CLOUDINARY_CONFIG['api_proxy']
+
+
+cloudinary.config(**CLOUDINARY_CONFIG)
+
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -28,7 +42,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-1a02ew##2^m*8q$i+v+08h=9n!@-jj28ek7!kdlpdhqgi!yt-9'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ["127.0.0.1","asmail.eu.pythonanywhere.com"]
 
@@ -43,7 +57,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'editor.apps.EditorConfig',
     'django_cleanup.apps.CleanupConfig',
-    'query_parameters'
+    'query_parameters',
+    'cloudinary'
 ]
 
 MIDDLEWARE = [
