@@ -6,7 +6,7 @@ A Simple note editor in Django.
 
 pip install -r requirements.txt
 
-Create .env file in same folder as settings.py with following content:\
+Create .env file in same folder as settings.py with following Cloudinary configuration:\
 """\
 cloud_name='cloud_name'\
 api_key='api_key'\
@@ -15,12 +15,11 @@ api_proxy=http://proxy.server:3128 # only need if deployed at PythonAnywhere\
 """
 
 ###
-api_proxy is only need if deployed at PythonAnywhere where communication to outside severs need to be done via their proxyserver. PythonAnywhere's proxyservers whitelist can viewed [here](https://www.pythonanywhere.com/whitelist/).
+api_proxy is only need if deployed at PythonAnywhere where communication to outside severs need to be done via their proxyserver. PythonAnywhere's proxyservers whitelist can be viewed from [here](https://www.pythonanywhere.com/whitelist/).
 
-Alternativly change NoteImage to use django.db.models.imagefield instead of cloudinary.models.CloudinaryField. 
+If you don't want use Cloudinary service change NoteImage to use django.db.models.imagefield instead of cloudinary.models.CloudinaryField. Bewere: during deployment Django dosen't serve image files itself. Read more about it [here](https://docs.djangoproject.com/en/4.1/howto/deployment/wsgi/modwsgi/). 
 
-CLOUDINARY is a service which enables to upload and download images.
-CLOUDINARY django sample project: https://github.com/cloudinary/cloudinary-django-sample. 
+CLOUDINARY is a service which enables to upload and download images. CLOUDINARY django sample project: https://github.com/cloudinary/cloudinary-django-sample. 
 
 ### Test online
 You can test the app online via this [link](http://asmail.eu.pythonanywhere.com/editor) until Thursday 30 March 2023. Create a account or log in with
