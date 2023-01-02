@@ -11,7 +11,7 @@ Create .env file in same folder as settings.py with following Cloudinary configu
 cloud_name='cloud_name'\
 api_key='api_key'\
 api_secret='api_secret'\
-api_proxy=http://proxy.server:3128 # only need if deployed at PythonAnywhere\
+api_proxy=http://proxy.server:3128 # only needed if deployed at PythonAnywhere\
 """
 
 ###
