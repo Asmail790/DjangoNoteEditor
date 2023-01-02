@@ -23,7 +23,7 @@ CLOUDINARY_CONFIG = dotenv_values(Path(__file__).parent / ".env")
 
 Deployed_AT_PYTHONANYWHERE = False 
 
-if not Deployed_AT_PYTHONANYWHERE:
+if not Deployed_AT_PYTHONANYWHERE and 'api_proxy' in CLOUDINARY_CONFIG :
     del CLOUDINARY_CONFIG['api_proxy']
 print(CLOUDINARY_CONFIG)
 
