@@ -14,7 +14,7 @@ class MyViewTests(StaticLiveServerTestCase):
         cls.playwright = sync_playwright().start()
 
         # TODO test all webbrowsers.
-        cls.browser = cls.playwright.chromium.launch()
+        cls.browser = cls.playwright.chromium.launch(headless=False)
 
         cls.account_data = {
             "password":"Exterimnate-All-Human-123",
@@ -96,7 +96,7 @@ class MyViewTests(StaticLiveServerTestCase):
 
         self.login(page)
         page.goto(f"{self.live_server_url}/editor")
-        page.get_by_test_id("add-button").click()
+        page.get_by_test_id("add-button").first.click()
         page.get_by_label(re.compile(r"^title.*", re.IGNORECASE)).fill(data["title"])
         page.get_by_label(re.compile(r"^text.*", re.IGNORECASE)).fill(data["text"])
         page.get_by_test_id("add-or-edit-form").get_by_role("button").click()
