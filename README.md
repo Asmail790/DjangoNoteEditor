@@ -6,7 +6,7 @@ A Simple note editor in Django.
 
 pip install -r requirements.txt
 
-Create .env file in same folder as settings.py with following content\
+Create .env file in same folder as settings.py with following content:\
 """\
 cloud_name='cloud_name'\
 api_key='api_key'\
