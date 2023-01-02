@@ -2,6 +2,10 @@
 
 A Simple note editor in Django.
 
+### Test online
+You can test the app online via this [link](http://asmail.eu.pythonanywhere.com/editor) until Thursday 30 March 2023. Create a account or log in with
+"RandomPerson" as username and "simple-Password1" as password.
+
 ### Installing instruction
 
 pip install -r requirements.txt
@@ -22,10 +26,6 @@ If you don't want use Cloudinary service change NoteImage to use django.db.model
 Cloudinary is a service which enables to upload and download images.
 
 Cloudinary django sample project: https://github.com/cloudinary/cloudinary-django-sample. 
-
-### Test online
-You can test the app online via this [link](http://asmail.eu.pythonanywhere.com/editor) until Thursday 30 March 2023. Create a account or log in with
-"RandomPerson" as username and "simple-Password1" as password.
 
 ### run
 
