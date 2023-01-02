@@ -19,13 +19,13 @@ import cloudinary
 
 os.environ['DJANGO_SETTINGS_MODULE'] = 'noteapp.settings'
 
-CLOUDINARY_CONFIG = dotenv_values()
+CLOUDINARY_CONFIG = dotenv_values(Path(__file__).parent / ".env")
 
 Deployed_AT_PYTHONANYWHERE = False 
 
 if not Deployed_AT_PYTHONANYWHERE:
     del CLOUDINARY_CONFIG['api_proxy']
-
+print(CLOUDINARY_CONFIG)
 
 cloudinary.config(**CLOUDINARY_CONFIG)
 
